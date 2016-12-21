@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Boolean Algebra</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class = "header">
+			<h1 id="heading">Boolean Algebra & Logic Simplification</h1>
+			
+		</div>
+		
+		<div>
+			<h2>Rules of Boolean Algebra</h2>
+			<!-- <select id = "input1" onselect="rulesChecker()"> -->
+			<select id = "input1">
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="A'">A'</option>
+				<option value="B'">B'</option>
+				<option value="A''">A''</option>
+				<option value="B''">B''</option>
+				<option value="0">0</option>
+				<option value="1">1</option>
+			</select>
+
+			<select id = "operation1">
+				<option value="OR">OR</option>
+				<option value="AND">AND</option>
+			</select>
+
+			<select id = "input2">
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="A'">A'</option>
+				<option value="B'">B'</option>
+				<option value="A''">A''</option>
+				<option value="B''">B''</option>
+				<option value="0">0</option>
+				<option value="1">1</option>
+			</select>
+			
+			<button onclick="doClickRules()">Solve</button>
+			<span id="answerrules"></span>			
+			
+		</div>
+		
+		<div>
+			<h2>DeMorgan's Theorems</h2>
+			
+			<select id = "input3">
+				<option value="(XY)'">(XY)'</option>
+				<option value="(X+Y)'">(X+Y)'</option>
+				<option value="X'+Y'">X'+Y'</option>
+				<option value="X'Y'">X'Y'</option>
+			</select>
+			
+			<button onclick="doClickDemorgan()">Solve</button>
+			
+			<span id="answerdemorgan"></span>			
+		</div>
+		
+		<script>
+		<!-- XXXXXXXXXXXXXXXXXXXXXXX -->
+			//function rulesChecker(){
+				//var x = document.getElementById("input1");
+				//if(x.options["0"] {
+					//document.getElementById("input2").options["0"].disabled;
+				//}
+			//}-->
+			
+			function doClickRules(){
+				var resultrules;
+				
+				var input1Index = document.getElementById("input1").selectedIndex;
+				var input2Index = document.getElementById("input2").selectedIndex;
+				var opIndex = document.getElementById("operation1").selectedIndex;
+				
+				var input1 = document.getElementById("input1").options;
+				var input2 = document.getElementById("input2").options;
+				var op = document.getElementById("operation1").options;
+				
+				//alert(input1[input1Index].text + " " + op[opIndex].text + " " + input2[input2Index].text);
+				
+				var opText = op[opIndex].text;
+				var input1Text = input1[input1Index].text;
+				var input2Text = input2[input2Index].text;
+				
+				if(opText == "OR"){
+					DoOrOperation(input1Text, input2Text)
+				}
+				else if(opText == "AND"){
+					DoAndOperation(input1Text, input2Text)
+				}
+			}
+			
+			function DoOrOperation(input1Text, input2Text){
+				<!-- OR with number -->
+				if(input1Text == "0" && input2Text == "A" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "1" && input2Text == "A" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "0" && input2Text == "B" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "1" && input2Text == "B" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "0" && input2Text == "A'" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "1" && input2Text == "A'" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "0" && input2Text == "B'" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "1" && input2Text == "B'" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "0" && input2Text == "A''" ){
+					resultrules = "A";
+				}
+				else if (input1Text == "1" && input2Text == "A''" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "0" && input2Text == "B''" ){
+					resultrules = "B";
+				}
+				else if (input1Text == "1" && input2Text == "B''" ){
+					resultrules = input1Text;
+				}
+				<!-- OR with number -->
+				
+				<!-- OR with itself -->
+				else if (input1Text == "A''" && input2Text == "A''"){
+					resultrules = "A";
+				}
+				else if (input1Text == "B''" && input2Text == "B''"){
+					resultrules = "B";
+				}
+				else if (input1Text != "A''" && input1Text != "B''" && input1Text == input2Text){
+					resultrules = input1Text;
+				}
+				
+				<!-- OR with itself -->
+				
+				<!-- OR with its complement -->
+				else if (input1Text == "A" && input2Text == "A'"){
+					resultrules = "1";
+				}
+				else if (input1Text == "A'" && input2Text == "A"){
+					resultrules = "1";
+				}
+				else if (input1Text == "B" && input2Text == "B'"){
+					resultrules = "1";
+				}
+				else if (input1Text == "B'" && input2Text == "B"){
+					resultrules = "1";
+				}
+				else if (input1Text == "A'" && input2Text == "A''"){
+					resultrules = "1";
+				}
+				else if (input1Text == "A''" && input2Text == "A'"){
+					resultrules = "1";
+				}
+				else if (input1Text == "B'" && input2Text == "B''"){
+					resultrules = "1";
+				}
+				else if (input1Text == "B''" && input2Text == "B'"){
+					resultrules = "1";
+				}
+				<!-- OR with its complement -->				
+				
+				<!-- OR with its double complement -->
+				else if (input1Text == "A" && input2Text == "A''"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "A''" && input2Text == "A"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "B" && input2Text == "B''"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "B''" && input2Text == "B"){
+					resultrules = input2Text;
+				}
+				<!-- OR with its double complement -->
+				
+				<!-- OR with others -->
+				else if (input1Text == "A" && input2Text == "B"){
+					resultrules = input1Text + "+" + input2Text;
+				}
+				else if (input1Text == "B" && input2Text == "A"){
+					resultrules = input2Text + "+" + input1Text;
+				}
+				else if (input1Text == "A" && input2Text == "B'"){
+					resultrules = input1Text + "+" + input2Text;
+				}
+				else if (input1Text == "B'" && input2Text == "A"){
+					resultrules = input2Text + "+" + input1Text;
+				}
+				else if (input1Text == "B" && input2Text == "A'"){
+					resultrules = input2Text + "+" + input1Text;
+				}
+				else if (input1Text == "A'" && input2Text == "B"){
+					resultrules = input1Text + "+" + input2Text;
+				}
+				else if (input1Text == "A'" && input2Text == "B'"){
+					resultrules = input1Text + "+" + input2Text;
+				}
+				else if (input1Text == "B'" && input2Text == "A'"){
+					resultrules = input2Text + "+" + input1Text;
+				}
+				else if (input1Text == "A" && input2Text == "B''"){
+					resultrules = input1Text + "+" + "B";
+				}
+				else if (input1Text == "B''" && input2Text == "A"){
+					resultrules = input2Text + "+" + "B";
+				}
+				else if (input1Text == "B" && input2Text == "A''"){
+					resultrules = "A" + "+" + input1Text;
+				}
+				else if (input1Text == "A''" && input2Text == "B"){
+					resultrules = "A" + "+" + input2Text;
+				}
+				else if (input1Text == "A'" && input2Text == "B''"){
+					resultrules = input1Text + "+" + "B";
+				}
+				else if (input1Text == "B''" && input2Text == "A'"){
+					resultrules = input2Text + "+" + "B";
+				}
+				else if (input1Text == "B'" && input2Text == "A''"){
+					resultrules = "A" + "+" + input1Text;
+				}
+				else if (input1Text == "A''" && input2Text == "B'"){
+					resultrules = "A" + "+" + input2Text;
+				}
+				else if (input1Text == "A''" && input2Text == "B''"){
+					resultrules = "A" + "+" + "B";
+				}
+				else if (input1Text == "B''" && input2Text == "A''"){
+					resultrules = "A" + "+" + "B";
+				}
+				<!-- OR with others -->
+				
+				document.getElementById("answerrules").innerHTML = resultrules;
+			}
+			
+			function DoAndOperation(input1Text, input2Text){
+				<!-- AND with number -->
+				if(input1Text == "0" && input2Text == "A" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "1" && input2Text == "A" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "0" && input2Text == "B" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "1" && input2Text == "B" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "0" && input2Text == "A'" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "1" && input2Text == "A'" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "0" && input2Text == "B'" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "1" && input2Text == "B'" ){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "0" && input2Text == "A''" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "1" && input2Text == "A''" ){
+					resultrules = "A";
+				}
+				else if (input1Text == "0" && input2Text == "B''" ){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "1" && input2Text == "B''" ){
+					resultrules = "B";
+				}
+				<!-- AND with number -->
+				
+				<!-- AND with itself -->
+				else if (input1Text == "A''" && input2Text == "A''"){
+					resultrules = "A";
+				}
+				else if (input1Text == "B''" && input2Text == "B''"){
+					resultrules = "B";
+				}
+				else if (input1Text != "A''" && input1Text != "B''" && input1Text == input2Text){
+					resultrules = input1Text;
+				}
+				
+				<!-- AND with itself -->
+				
+				<!-- AND with its complement -->
+				else if (input1Text == "A" && input2Text == "A'"){
+					resultrules = "0";
+				}
+				else if (input1Text == "A'" && input2Text == "A"){
+					resultrules = "0";
+				}
+				else if (input1Text == "B" && input2Text == "B'"){
+					resultrules = "0";
+				}
+				else if (input1Text == "B'" && input2Text == "B"){
+					resultrules = "0";
+				}
+				else if (input1Text == "A'" && input2Text == "A''"){
+					resultrules = "0";
+				}
+				else if (input1Text == "A''" && input2Text == "A'"){
+					resultrules = "0";
+				}
+				else if (input1Text == "B'" && input2Text == "B''"){
+					resultrules = "0";
+				}
+				else if (input1Text == "B''" && input2Text == "B'"){
+					resultrules = "0";
+				}
+				<!-- AND with its complement -->				
+				
+				<!-- AND with its double complement -->
+				else if (input1Text == "A" && input2Text == "A''"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "A''" && input2Text == "A"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "B" && input2Text == "B''"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "B''" && input2Text == "B"){
+					resultrules = input2Text;
+				}
+				<!-- AND with its double complement -->
+				
+				<!-- AND with others -->
+				else if (input1Text == "A" && input2Text == "B"){
+					resultrules = input1Text + input2Text;
+				}
+				else if (input1Text == "B" && input2Text == "A"){
+					resultrules = input2Text + input1Text;
+				}
+				else if (input1Text == "A" && input2Text == "B'"){
+					resultrules = input1Text + input2Text;
+				}
+				else if (input1Text == "B'" && input2Text == "A"){
+					resultrules = input2Text + input1Text;
+				}
+				else if (input1Text == "B" && input2Text == "A'"){
+					resultrules = input2Text + input1Text;
+				}
+				else if (input1Text == "A'" && input2Text == "B"){
+					resultrules = input1Text + input2Text;
+				}
+				else if (input1Text == "A'" && input2Text == "B'"){
+					resultrules = input1Text + input2Text;
+				}
+				else if (input1Text == "B'" && input2Text == "A'"){
+					resultrules = input2Text + input1Text;
+				}
+				else if (input1Text == "A" && input2Text == "B''"){
+					resultrules = input1Text + "B";
+				}
+				else if (input1Text == "B''" && input2Text == "A"){
+					resultrules = input2Text + "B";
+				}
+				else if (input1Text == "B" && input2Text == "A''"){
+					resultrules = "A" + input1Text;
+				}
+				else if (input1Text == "A''" && input2Text == "B"){
+					resultrules = "A" + input2Text;
+				}
+				else if (input1Text == "A'" && input2Text == "B''"){
+					resultrules = input1Text + "B";
+				}
+				else if (input1Text == "B''" && input2Text == "A'"){
+					resultrules = input2Text + "B";
+				}
+				else if (input1Text == "B'" && input2Text == "A''"){
+					resultrules = "A" + input1Text;
+				}
+				else if (input1Text == "A''" && input2Text == "B'"){
+					resultrules = "A" + input2Text;
+				}
+				else if (input1Text == "A''" && input2Text == "B''"){
+					resultrules = "A" + "B";
+				}
+				else if (input1Text == "B''" && input2Text == "A''"){
+					resultrules = "A" + "B";
+				}
+				<!-- AND with others -->
+				document.getElementById("answerrules").innerHTML = resultrules;
+			}
+			
+			function doClickDemorgan(){
+				var resultdemorgan;
+				
+				var input3Index = document.getElementById("input3").selectedIndex;				
+				var input3 = document.getElementById("input3").options;
+				var input3Text = input3[input3Index].text;
+				
+				if(input3Text == "(XY)'"){
+					resultdemorgan = "X'+Y'";
+				}
+				else if(input3Text == "(X+Y)'"){
+					resultdemorgan = "X'Y'";
+				}
+				else if(input3Text == "X'+Y'"){
+					resultdemorgan = "(XY)'";
+				}
+				else if(input3Text == "X'Y'"){
+					resultdemorgan = "(X+Y)'";
+				}
+				
+				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
+			}
+				
+
+			
+			function changeText(id){
+			id.innerHTML = 'You Clicked';
+			}
+			function changeHeaderText(){
+				var heading = document.getElementById('heading');
+				heading.innerHTML = 'Header Changed!';
+			}
+		</script>
+	</body>
+</html>

@@ -58,6 +58,15 @@ select{
     display: inline-block;
     font-size: 16px;
 }
+
+span{
+	width: 100px fixed;
+	background-color: white;
+	padding: 10px 25px;
+	font-size: 16px;
+	text-align: center;
+	
+}
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;

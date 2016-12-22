@@ -40,7 +40,6 @@
 				<option value="0">0</option>
 				<option value="1">1</option>
 			</select>
-			
 			<button onclick="doClickRules()">Solve</button>
 			<span id="answerrules"></span>			
 			
@@ -55,37 +54,40 @@
 				<option value="X'+Y'">X'+Y'</option>
 				<option value="X'Y'">X'Y'</option>
 			</select>
-			
 			<button onclick="doClickDemorgan()">Solve</button>
-			
 			<span id="answerdemorgan"></span>			
 		</div>
+		<br>
+		<br>
+		<button onclick = "doReset()" >Reset</button>
 		
 		<script>
-		<!-- XXXXXXXXXXXXXXXXXXXXXXX -->
-			//function rulesChecker(){
-				//var x = document.getElementById("input1");
-				//if(x.options["0"] {
-					//document.getElementById("input2").options["0"].disabled;
-				//}
-			//}-->
 			
+		<!-- disable option for 0 and 1 if the other select option is 0 or 1 -->							
+		if (document.getElementById("input2").options == "0"){
+			document.getElementById("input2").options[6].disabled = true;
+		}
+
+		<!-- disable option for 0 and 1 if the other select option is 0 or 1 -->
+		
 			function doClickRules(){
 				var resultrules;
 				
 				var input1Index = document.getElementById("input1").selectedIndex;
 				var input2Index = document.getElementById("input2").selectedIndex;
 				var opIndex = document.getElementById("operation1").selectedIndex;
-				
+									
 				var input1 = document.getElementById("input1").options;
 				var input2 = document.getElementById("input2").options;
 				var op = document.getElementById("operation1").options;
-				
-				//alert(input1[input1Index].text + " " + op[opIndex].text + " " + input2[input2Index].text);
-				
+									
 				var opText = op[opIndex].text;
 				var input1Text = input1[input1Index].text;
 				var input2Text = input2[input2Index].text;
+				
+				//alert(input1[input1Index].text + " " + op[opIndex].text + " " + input2[input2Index].text);
+				
+				
 				
 				if(opText == "OR"){
 					DoOrOperation(input1Text, input2Text)
@@ -93,6 +95,7 @@
 				else if(opText == "AND"){
 					DoAndOperation(input1Text, input2Text)
 				}
+				
 			}
 			
 			function DoOrOperation(input1Text, input2Text){
@@ -427,7 +430,14 @@
 				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
 			}
 				
-
+			function doReset(){
+				document.getElementById("input1").options[6].disabled = false;
+				document.getElementById("input1").options[7].disabled = false;
+				document.getElementById("input2").options[6].disabled = false;
+				document.getElementById("input2").options[7].disabled = false;
+				document.getElementById("answerrules").innerHTML = " ";
+				document.getElementById("answerdemorgan").innerHTML = " ";
+			}
 			
 			function changeText(id){
 			id.innerHTML = 'You Clicked';

@@ -1,26 +1,63 @@
+/* External style sheet */
+
+/*
 body{
 	text-align: left;
-	font-family: arial;
-	font-size:18px
+	font-family: arial, helvetica, sans-serif;
+	font-size:15px
 }
+*/
 
+/*
 li{
 	list-style: none;
 	line-height: 2em;
 	text-align: left;
 }
+*/
+
+h2{
+	text-align: left;
+	font-family: arial, helvetica, sans-serif;
+	font-size:25px
+}
 
 .header{
-	background: #f4f4f4;
-	border-bottom:#ccc 3px solid;
-	padding:20px;
+	background: #A4C639;
+	font-family: cursive, times, sans-serif;
+	border-bottom:#ccc 2px solid;
+	padding:10px;
+	text-align: center;
 }
 
 .container{
-	width:700px;
-	margin:30px auto;
+	width:500px;
+	text-align: left;
+	background: #F5F5DC;
 }
 
+button{
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	border-radius: 12px;
+}
+
+select{
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;

@@ -62,12 +62,13 @@
 		<button onclick = "doReset()" >Reset</button>
 		
 		<script>
-			
+		
 		<!-- disable option for 0 and 1 if the other select option is 0 or 1 -->							
-		if (document.getElementById("input2").options == "0"){
-			document.getElementById("input2").options[6].disabled = true;
-		}
-
+		
+			if (document.getElementById("input1").selectedIndex = 6){
+				document.getElementById("input2").options[6].disabled = true;
+				document.getElementById("input2").options[7].disabled = true;
+			}
 		<!-- disable option for 0 and 1 if the other select option is 0 or 1 -->
 		
 			function doClickRules(){
@@ -431,12 +432,16 @@
 			}
 				
 			function doReset(){
-				document.getElementById("input1").options[6].disabled = false;
-				document.getElementById("input1").options[7].disabled = false;
-				document.getElementById("input2").options[6].disabled = false;
-				document.getElementById("input2").options[7].disabled = false;
+				/*document.getElementById("input1").options[6].disabled = false;*/
+				/*document.getElementById("input1").options[7].disabled = false;*/
+				/*document.getElementById("input2").options[6].disabled = false;*/
+				/*document.getElementById("input2").options[7].disabled = false;*/
 				document.getElementById("answerrules").innerHTML = " ";
 				document.getElementById("answerdemorgan").innerHTML = " ";
+				document.getElementById("input1").selectedIndex = 0;
+				document.getElementById("input2").selectedIndex = 0;
+				document.getElementById("operation1").selectedIndex = 0;
+				document.getElementById("input3").selectedIndex = 0;
 			}
 			
 			function changeText(id){

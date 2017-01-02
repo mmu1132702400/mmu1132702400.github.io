@@ -422,102 +422,103 @@
 				<!-- AND with itself -->
 				
 				<!-- AND with its complement -->
-				else if (input1Text == "A" && input2Text == "A'"){
+				else if ( (input1Text == "A" && input2Text == "A'") || (input1Text == "A'" && input2Text == "A")){
 					resultrules = "0";
-				}
+				}/*
 				else if (input1Text == "A'" && input2Text == "A"){
 					resultrules = "0";
-				}
-				else if (input1Text == "B" && input2Text == "B'"){
+				}*/
+				else if ( (input1Text == "B" && input2Text == "B'") || (input1Text == "B'" && input2Text == "B") ){
 					resultrules = "0";
-				}
+				}/*
 				else if (input1Text == "B'" && input2Text == "B"){
 					resultrules = "0";
-				}
-				else if (input1Text == "A'" && input2Text == "A''"){
+				}*/
+				else if ( (input1Text == "A'" && input2Text == "A''") || (input1Text == "A''" && input2Text == "A'") ){
 					resultrules = "0";
-				}
+				}/*
 				else if (input1Text == "A''" && input2Text == "A'"){
 					resultrules = "0";
-				}
-				else if (input1Text == "B'" && input2Text == "B''"){
+				}*/
+				else if ( (input1Text == "B'" && input2Text == "B''") || (input1Text == "B''" && input2Text == "B'") ){
 					resultrules = "0";
-				}
+				}/*
 				else if (input1Text == "B''" && input2Text == "B'"){
 					resultrules = "0";
-				}
+				}*/
 				<!-- AND with its complement -->				
 				
 				<!-- AND with its double complement -->
-				else if (input1Text == "A" && input2Text == "A''"){
-					resultrules = input1Text;
-				}
+				else if ( (input1Text == "A" && input2Text == "A''") || (input1Text == "A''" && input2Text == "A") ){
+					resultrules = "A";
+				}/*
 				else if (input1Text == "A''" && input2Text == "A"){
 					resultrules = input2Text;
-				}
-				else if (input1Text == "B" && input2Text == "B''"){
-					resultrules = input1Text;
-				}
+				}*/
+				else if ( (input1Text == "B" && input2Text == "B''") || (input1Text == "B''" && input2Text == "B") ){
+					resultrules = "B";
+				}/*
 				else if (input1Text == "B''" && input2Text == "B"){
 					resultrules = input2Text;
-				}
+				}*/
 				<!-- AND with its double complement -->
 				
 				<!-- AND with others -->
-				else if (input1Text == "A" && input2Text == "B"){
-					resultrules = input1Text + input2Text;
-				}
+				else if ( (input1Text == "A" && input2Text == "B") || (input1Text == "B" && input2Text == "A") ){
+					resultrules = "AB";
+				}/*
 				else if (input1Text == "B" && input2Text == "A"){
 					resultrules = input2Text + input1Text;
-				}
-				else if (input1Text == "A" && input2Text == "B'"){
-					resultrules = input1Text + input2Text;
-				}
+				}*/
+				else if ( (input1Text == "A" && input2Text == "B'") || (input1Text == "B'" && input2Text == "A") ){
+					resultrules = "AB'";
+				}/*
 				else if (input1Text == "B'" && input2Text == "A"){
 					resultrules = input2Text + input1Text;
 				}
 				else if (input1Text == "B" && input2Text == "A'"){
 					resultrules = input2Text + input1Text;
 				}
-				else if (input1Text == "A'" && input2Text == "B"){
-					resultrules = input1Text + input2Text;
+				*/
+				else if ( (input1Text == "A'" && input2Text == "B") || (input1Text == "B" && input2Text == "A'") ){
+					resultrules = "A'B";
 				}
-				else if (input1Text == "A'" && input2Text == "B'"){
-					resultrules = input1Text + input2Text;
-				}
+				else if ( (input1Text == "A'" && input2Text == "B'") ||(input1Text == "B'" && input2Text == "A'") ){
+					resultrules = "A'B'";
+				}/*
 				else if (input1Text == "B'" && input2Text == "A'"){
 					resultrules = input2Text + input1Text;
-				}
-				else if (input1Text == "A" && input2Text == "B''"){
-					resultrules = input1Text + "B";
-				}
+				}*/
+				else if ( (input1Text == "A" && input2Text == "B''") || (input1Text == "B''" && input2Text == "A")){
+					resultrules = "AB";
+				}/*
 				else if (input1Text == "B''" && input2Text == "A"){
 					resultrules = input2Text + "B";
 				}
 				else if (input1Text == "B" && input2Text == "A''"){
 					resultrules = "A" + input1Text;
+				}*/
+				else if ( (input1Text == "A''" && input2Text == "B") || (input1Text == "B" && input2Text == "A''") ){
+					resultrules = "AB";
 				}
-				else if (input1Text == "A''" && input2Text == "B"){
-					resultrules = "A" + input2Text;
-				}
-				else if (input1Text == "A'" && input2Text == "B''"){
-					resultrules = input1Text + "B";
-				}
+				else if ( (input1Text == "A'" && input2Text == "B''") || (input1Text == "B''" && input2Text == "A'")){
+					resultrules = "A'B";
+				}/*
 				else if (input1Text == "B''" && input2Text == "A'"){
 					resultrules = input2Text + "B";
 				}
 				else if (input1Text == "B'" && input2Text == "A''"){
 					resultrules = "A" + input1Text;
+				}*/
+				else if ( (input1Text == "A''" && input2Text == "B'") || (input1Text == "B'" && input2Text == "A''") ){
+					resultrules = "AB'";
 				}
-				else if (input1Text == "A''" && input2Text == "B'"){
-					resultrules = "A" + input2Text;
-				}
-				else if (input1Text == "A''" && input2Text == "B''"){
-					resultrules = "A" + "B";
-				}
+				else if ( (input1Text == "A''" && input2Text == "B''") || (input1Text == "B''" && input2Text == "A''") ){
+					resultrules = "AB";
+				}/*
 				else if (input1Text == "B''" && input2Text == "A''"){
 					resultrules = "A" + "B";
-				}
+				}*/
 				<!-- AND with others -->
 				document.getElementById("answerrules").innerHTML = resultrules;
 			}

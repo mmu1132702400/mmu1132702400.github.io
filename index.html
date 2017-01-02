@@ -21,11 +21,12 @@
 				<option value="B'">B'</option>
 				<option value="A''">A''</option>
 				<option value="B''">B''</option>
+				<option value="AB">AB</option>
 				<option value="0">0</option>
 				<option value="1">1</option>
 			</select>
 
-			<select id = "operation1">
+			<select id = "operation1" onchange = "doDisableOperation1()">
 				<option value="OR">OR</option>
 				<option value="AND">AND</option>
 			</select>
@@ -37,6 +38,7 @@
 				<option value="B'">B'</option>
 				<option value="A''">A''</option>
 				<option value="B''">B''</option>
+				<option value="AB">AB</option>
 				<option value="0">0</option>
 				<option value="1">1</option>
 			</select>
@@ -307,6 +309,27 @@
 					resultrules = input2Text;
 				}*/
 				<!-- OR with its double complement -->
+				
+				<!--- OR with AB (Rule 10: A + AB = A) -->
+				else if ( (input1Text == "A" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A") ) {
+					resultrules = "A";
+				}
+				else if ( (input1Text == "B" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B") ) {
+					resultrules = "B";
+				}
+				else if ( (input1Text == "A'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A'") ) {
+					resultrules = "still searching";
+				}
+				else if ( (input1Text == "B'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B'") ) {
+					resultrules = "still searching";
+				}
+				else if ( (input1Text == "A''" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A''") ) {
+					resultrules = "A";
+				}
+				else if ( (input1Text == "B''" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B''") ) {
+					resultrules = "B";
+				}
+				<!--- OR with AB (Rule 10: A + AB = A) -->
 				
 				<!-- OR with others -->
 				else if ( (input1Text == "A" && input2Text == "B") || (input1Text == "B" && input2Text == "A") ){

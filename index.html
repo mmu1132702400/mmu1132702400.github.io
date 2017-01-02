@@ -63,6 +63,16 @@
 		<br>
 		<button onclick = "doReset()" >Reset</button>
 		
+		<p>Still not done;
+		<br>
+		AB OR 1
+		<br>
+		AB OR B'
+		<br>
+		A' OR AB
+		<br>
+		B' OR AB
+		</p>
 		<script>
 		
 		<!-- disable option for 0 and 1 if the other select option is 0 or 1 -->							
@@ -321,7 +331,7 @@
 					resultrules = "B";
 				}
 				else if ( (input1Text == "A'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A'") ) {
-					resultrules = "A' + B";
+					resultrules = "still searching";
 				}
 				<!-- not done yet -->
 				else if ( (input1Text == "B'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B'") ) {
@@ -397,10 +407,13 @@
 			
 			function DoAndOperation(input1Text, input2Text){
 				<!-- AND with number -->
-				if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
+				if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''" || input2Text == "AB") ){
 					resultrules = input1Text;
 				}
 				else if (input1Text == "1" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
+					resultrules = input2Text;
+				}
+				else if ( (input1Text == "A" || input1Text == "B" || input1Text == "A'" || input1Text == "B'" || input1Text == "A''" || input1Text == "B''" || input1Text == "AB") && input2Text == "0"){
 					resultrules = input2Text;
 				}/*
 				else if (input1Text == "0" && input2Text == "B" ){

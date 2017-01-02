@@ -52,7 +52,7 @@
 		<div class = "container">
 			<h2>DeMorgan's Theorems</h2>
 			
-			<select id = "input3" onchange = "doDisableDemorganInput()">
+			<select id = "input3" onchange = "doDisableDemorganInput3()">
 				<option value="A">A</option>
 				<option value="B">B</option>
 				<option value="A'">A'</option>
@@ -623,7 +623,7 @@
 				document.getElementById("answerrules").innerHTML = resultrules;
 			}
 			
-			function doDisableDemorganInput(){
+			function doDisableDemorganInput3(){
 				alert("disable function triggered");
 				var x = document.getElementById("input3").value;
 					
@@ -653,6 +653,7 @@
 					}
 			}
 			
+			
 			function doClickDemorgan(){
 				var resultdemorgan;				
 				
@@ -681,6 +682,9 @@
 				<!-- A'+B' -->
 				else if ( (input3Text == "A'" && input4Text == "B'" && op3Text == "NoComplement") ||  (input3Text == "B'" && input4Text == "A'" && op3Text == "NoComplement") ) {
 					resultdemorgan = "(AB)'";
+				}
+				else if ( (input3Text == "A'" && input4Text == "B'" && op3Text == "ComplementAll") ||  (input3Text == "B'" && input4Text == "A'" && op3Text == "ComplementAll") ) {
+					resultdemorgan = "(A' + B')'";
 				}
 				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
 			

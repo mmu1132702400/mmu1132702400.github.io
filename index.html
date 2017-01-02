@@ -27,7 +27,7 @@
 				<option value="1">1</option>
 			</select>
 
-			<select id = "operation1" onchange = "doDisableOperation1()">
+			<select id = "operation1">
 				<option value="OR">OR</option>
 				<option value="AND">AND</option>
 			</select>
@@ -44,7 +44,7 @@
 				<option value="0">0</option>
 				<option value="1">1</option>
 			</select>
-			<button onclick="doClickRules()">Solve</button>
+			<button id = "btn1" onclick="doClickRules()">Solve</button>
 			<span id="answerrules"></span>			
 			
 		</div>
@@ -52,7 +52,7 @@
 		<div class = "container">
 			<h2>DeMorgan's Theorems</h2>
 			
-			<select id = "input3">
+			<select id = "input3" onchange = "doDisableDemorganInput()">
 				<option value="A">A</option>
 				<option value="B">B</option>
 				<option value="A'">A'</option>
@@ -65,10 +65,10 @@
 			</select>
 			
 			<select id = "input4">
-				<option value="A">A</option>
+				<option value="A" disabled>A</option>
 				<option value="B">B</option>
-				<option value="A'">A'</option>
-				<option value="B'">B'</option>
+				<option value="A'" disabled>A'</option>
+				<option value="B'" disabled>B'</option>
 			</select>
 			
 			<select id = "operation3">
@@ -77,7 +77,7 @@
 				<option value="ComplementAll">Complement All</option>
 			</select>
 			
-			<button onclick="doClickDemorgan()">Solve</button>
+			<button id = "btn2" onclick="doClickDemorgan()">Solve</button>
 			<span id="answerdemorgan"></span>			
 		</div>
 		<br>
@@ -623,6 +623,36 @@
 				document.getElementById("answerrules").innerHTML = resultrules;
 			}
 			
+			function doDisableDemorganInput(){
+				alert("disable function triggered");
+				var x = document.getElementById("input3").value;
+					
+					if(x == "B"){
+						document.getElementById("input4").options[0].disabled = false;
+						document.getElementById("input4").options[2].disabled = true;
+						document.getElementById("input4").options[3].disabled = true;
+						document.getElementById("input4").options[1].disabled = true;
+					} 
+					else if(x == "A'"){
+						document.getElementById("input4").options[3].disabled = false;
+						document.getElementById("input4").options[0].disabled = true;
+						document.getElementById("input4").options[1].disabled = true;
+						document.getElementById("input4").options[2].disabled = true;
+					}
+					else if(x == "B'"){
+						document.getElementById("input4").options[2].disabled = false;
+						document.getElementById("input4").options[0].disabled = true;
+						document.getElementById("input4").options[1].disabled = true;
+						document.getElementById("input4").options[3].disabled = true;
+					}
+					else if (x == "A"){
+						document.getElementById("input4").options[1].disabled = false;
+						document.getElementById("input4").options[0].disabled = true;
+						document.getElementById("input4").options[2].disabled = true;
+						document.getElementById("input4").options[3].disabled = true;
+					}
+			}
+			
 			function doClickDemorgan(){
 				var resultdemorgan;				
 				
@@ -648,12 +678,27 @@
 				else if ( (input3Text == "A" && input4Text == "B" && op3Text == "ComplementAll") ||  (input3Text == "B" && input4Text == "A" && op3Text == "ComplementAll") ) {
 					resultdemorgan = "A'B'";
 				}
+				<!-- A'+B' -->
+				else if ( (input3Text == "A'" && input4Text == "B'" && op3Text == "NoComplement") ||  (input3Text == "B'" && input4Text == "A'" && op3Text == "NoComplement") ) {
+					resultdemorgan = "(AB)'";
+				}
 				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
 			
 			}
 			
-			function DoAndOperationDemorgan(input3Text, input4Text){
-			
+			function DoAndOperationDemorgan(input3Text, input4Text, op3Text){
+				if ( (input3Text == "A" && input4Text == "B" && op3Text == "NoComplement") ||  (input3Text == "B" && input4Text == "A" && op3Text == "NoComplement") ) {
+					resultdemorgan = "AB";
+				}
+				<!-- (AB)' -->
+				else if ( (input3Text == "A" && input4Text == "B" && op3Text == "ComplementAll") ||  (input3Text == "B" && input4Text == "A" && op3Text == "ComplementAll") ) {
+					resultdemorgan = "A' + B'";
+				}
+				<!-- A'+B' -->
+				else if ( (input3Text == "A'" && input4Text == "B'" && op3Text == "NoComplement") ||  (input3Text == "B'" && input4Text == "A'" && op3Text == "NoComplement") ) {
+					resultdemorgan = "(A + B)'";
+				}
+				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
 			}
 			
 			function doReset(){
@@ -661,8 +706,11 @@
 				document.getElementById("answerdemorgan").innerHTML = " ";
 				document.getElementById("input1").selectedIndex = 0;
 				document.getElementById("input2").selectedIndex = 0;
-				document.getElementById("operation1").selectedIndex = 0;
 				document.getElementById("input3").selectedIndex = 0;
+				document.getElementById("input4").selectedIndex = 0;
+				document.getElementById("operation1").selectedIndex = 0;
+				document.getElementById("operation2").selectedIndex = 0;
+				document.getElementById("operation3").selectedIndex = 0;
 				document.getElementById("input1").options[7].disabled = false;
 				document.getElementById("input1").options[8].disabled = false;
 				document.getElementById("input2").options[7].disabled = false;

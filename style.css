@@ -31,7 +31,7 @@ h2{
 }
 
 .container{
-	width:600px;
+	width:800px;
 	text-align: left;
 	background: #F5F5DC;
 }
@@ -52,7 +52,7 @@ select{
 	background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 10px 25px;
+    padding: 10px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

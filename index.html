@@ -370,12 +370,12 @@
 			
 			function DoAndOperation(input1Text, input2Text){
 				<!-- AND with number -->
-				if(input1Text == "0" && input2Text == "A" ){
+				if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
 					resultrules = input1Text;
 				}
-				else if (input1Text == "1" && input2Text == "A" ){
+				else if (input1Text == "1" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
 					resultrules = input2Text;
-				}
+				}/*
 				else if (input1Text == "0" && input2Text == "B" ){
 					resultrules = input1Text;
 				}
@@ -405,7 +405,7 @@
 				}
 				else if (input1Text == "1" && input2Text == "B''" ){
 					resultrules = "B";
-				}
+				}*/
 				<!-- AND with number -->
 				
 				<!-- AND with itself -->

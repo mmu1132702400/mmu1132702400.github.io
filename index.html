@@ -22,6 +22,7 @@
 				<option value="A''">A''</option>
 				<option value="B''">B''</option>
 				<option value="AB">AB</option>
+				<!--<option value="A'B">A'B</option>-->
 				<option value="0">0</option>
 				<option value="1">1</option>
 			</select>
@@ -39,6 +40,7 @@
 				<option value="A''">A''</option>
 				<option value="B''">B''</option>
 				<option value="AB">AB</option>
+				<!--<option value="A'B">A'B</option>-->
 				<option value="0">0</option>
 				<option value="1">1</option>
 			</select>
@@ -51,11 +53,24 @@
 			<h2>DeMorgan's Theorems</h2>
 			
 			<select id = "input3">
-				<option value="(XY)'">(XY)'</option>
-				<option value="(X+Y)'">(X+Y)'</option>
-				<option value="X'+Y'">X'+Y'</option>
-				<option value="X'Y'">X'Y'</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="A'">A'</option>
+				<option value="B'">B'</option>
 			</select>
+			
+			<select id = "operation2">
+				<option value="OR">OR</option>
+				<option value="AND">AND</option>
+			</select>
+			
+			<select id = "input4">
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="A'">A'</option>
+				<option value="B'">B'</option>
+			</select>
+			
 			<button onclick="doClickDemorgan()">Solve</button>
 			<span id="answerdemorgan"></span>			
 		</div>
@@ -74,6 +89,8 @@
 		B' OR AB
 		<br>
 		AB AND 0
+		<br>
+		Rule 11 KIV/discarded?. Rule 12 discarded.
 		</p>
 		<script>
 		
@@ -109,20 +126,20 @@
 			function doClickRules(){
 				var resultrules;				
 				
-				var opText = document.getElementById("operation1").value;
+				var op1Text = document.getElementById("operation1").value;
 				var input1Text = document.getElementById("input1").value;
 				var input2Text = document.getElementById("input2").value;
 				
-				if(opText == "OR"){
-					DoOrOperation(input1Text, input2Text)
+				if(op1Text == "OR"){
+					DoOrOperationRules(input1Text, input2Text)
 				}
-				else if(opText == "AND"){
-					DoAndOperation(input1Text, input2Text)
+				else if(op1Text == "AND"){
+					DoAndOperationRules(input1Text, input2Text)
 				}
 				
 			}
 			
-			function DoOrOperation(input1Text, input2Text){
+			function DoOrOperationRules(input1Text, input2Text){
 				<!-- OR with number -->
 				/*
 				if( (input1Text == "0" && input2Text == "A") || (input1Text == "A" && input2Text == "0") ){
@@ -407,7 +424,7 @@
 				document.getElementById("answerrules").innerHTML = resultrules;
 			}
 			
-			function DoAndOperation(input1Text, input2Text){
+			function DoAndOperationRules(input1Text, input2Text){
 				<!-- AND with number -->
 				if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
 					resultrules = input1Text;
@@ -426,6 +443,9 @@
 				}
 				else if ( (input1Text == "B''" && input2Text == "1") || (input1Text == "1" && input2Text == "B''") ){
 					resultrules = "B";
+				}
+				else if ( (input1Text == "AB" && input2Text == "0") || (input1Text == "0" && input2Text == "AB") ) {
+					resultrules = "still searching";
 				}
 				else if ( (input1Text == "AB" && input2Text == "0") || (input1Text == "0" && input2Text == "AB") ) {
 					resultrules = "still searching";
@@ -472,7 +492,6 @@
 				else if (input1Text != "A''" && input1Text != "B''" && input1Text == input2Text){
 					resultrules = input1Text;
 				}
-				
 				<!-- AND with itself -->
 				
 				<!-- AND with its complement -->
@@ -516,6 +535,27 @@
 					resultrules = input2Text;
 				}*/
 				<!-- AND with its double complement -->
+				
+				<!-- AND with AB -->
+				else if ( (input1Text == "A" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A") ) {
+					resultrules = "AB"
+				}
+				else if ( (input1Text == "B" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B") ) {
+					resultrules = "AB"
+				}
+				else if ( (input1Text == "A'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A'") ) {
+					resultrules = "0"
+				}
+				else if ( (input1Text == "B'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B'") ) {
+					resultrules = "0"
+				}
+				else if ( (input1Text == "A''" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A''") ) {
+					resultrules = "AB"
+				}
+				else if ( (input1Text == "B''" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B''") ) {
+					resultrules = "AB"
+				}
+				<!-- AND with AB -->
 				
 				<!-- AND with others -->
 				else if ( (input1Text == "A" && input2Text == "B") || (input1Text == "B" && input2Text == "A") ){
@@ -578,26 +618,19 @@
 			}
 			
 			function doClickDemorgan(){
-				var resultdemorgan;
+				var resultdemorgan;				
 				
-				var input3Index = document.getElementById("input3").selectedIndex;				
-				var input3 = document.getElementById("input3").options;
-				var input3Text = input3[input3Index].text;
+				var op2Text = document.getElementById("operation2").value;
+				var input3Text = document.getElementById("input3").value;
+				var input4Text = document.getElementById("input4").value;
 				
-				if(input3Text == "(XY)'"){
-					resultdemorgan = "X'+Y'";
+				if(op2Text == "OR"){
+					DoOrOperationDemorgan(input3Text, input4Text)
 				}
-				else if(input3Text == "(X+Y)'"){
-					resultdemorgan = "X'Y'";
-				}
-				else if(input3Text == "X'+Y'"){
-					resultdemorgan = "(XY)'";
-				}
-				else if(input3Text == "X'Y'"){
-					resultdemorgan = "(X+Y)'";
+				else if(op2Text == "AND"){
+					DoAndOperationDemorgan(input3Text, input4Text)
 				}
 				
-				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
 			}
 				
 			function doReset(){

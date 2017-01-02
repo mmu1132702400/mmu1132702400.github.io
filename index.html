@@ -70,12 +70,12 @@
 					var x = document.getElementById("input1").value;
 					
 					if(x == "0" || x == "1"){
-						document.getElementById("input2").options[6].disabled = true;
 						document.getElementById("input2").options[7].disabled = true;
+						document.getElementById("input2").options[8].disabled = true;
 					}
 					else{
-						document.getElementById("input2").options[6].disabled = false;
 						document.getElementById("input2").options[7].disabled = false;
+						document.getElementById("input2").options[8].disabled = false;
 					}								
 			}
 			
@@ -83,12 +83,12 @@
 				
 				var y = document.getElementById("input2").value;
 				if(y == "0" || y == "1"){
-						document.getElementById("input1").options[6].disabled = true;
 						document.getElementById("input1").options[7].disabled = true;
+						document.getElementById("input1").options[8].disabled = true;
 				}
 				else{
-						document.getElementById("input1").options[6].disabled = false;
 						document.getElementById("input1").options[7].disabled = false;
+						document.getElementById("input1").options[8].disabled = false;
 				}
 				
 			}
@@ -232,7 +232,7 @@
 				if (input1Text == "1" && (input2Text == "A" || input2Text == "B" || input2Text == "A'"|| input2Text == "B'"|| input2Text == "A''"|| input2Text == "B''") ){
 					resultrules = input1Text;
 				}
-				else if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'"|| input2Text == "B'")){					
+				else if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'"|| input2Text == "B'" || input2Text == "AB")){					
 					resultrules = input2Text;
 				}
 				else if (input1Text == "0" && input2Text == "A''" ){
@@ -244,7 +244,7 @@
 				else if ( (input1Text == "A" || input1Text == "B" || input1Text == "A'"|| input1Text == "B'"|| input1Text == "A''"|| input1Text == "B''") && input2Text == "1"){
 					resultrules = input2Text;
 				}
-				else if( (input1Text == "A" || input1Text == "B" || input1Text == "A'"|| input1Text == "B'") && input2Text == "0"){
+				else if( (input1Text == "A" || input1Text == "B" || input1Text == "A'"|| input1Text == "B'" || input2Text == "AB") && input2Text == "0"){
 					resultrules = input1Text;
 				}
 				else if (input1Text == "A''" && input2Text == "0" ){
@@ -252,6 +252,9 @@
 				}
 				else if (input1Text == "B''" && input2Text == "0" ){
 					resultrules = "B";
+				}
+				else if ( (input1Text == "1" && input2Text == "AB") || (input1Text == "AB" && input2Text == "1") ){
+					resultrules = "still searching";
 				}	
 				<!-- OR with number -->
 				
@@ -310,7 +313,7 @@
 				}*/
 				<!-- OR with its double complement -->
 				
-				<!--- OR with AB (Rule 10: A + AB = A) -->
+				<!--- OR with AB (Rule 10: A + AB = A), except 0 and 1 -->
 				else if ( (input1Text == "A" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A") ) {
 					resultrules = "A";
 				}
@@ -318,8 +321,9 @@
 					resultrules = "B";
 				}
 				else if ( (input1Text == "A'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A'") ) {
-					resultrules = "still searching";
+					resultrules = "A' + B";
 				}
+				<!-- not done yet -->
 				else if ( (input1Text == "B'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B'") ) {
 					resultrules = "still searching";
 				}
@@ -576,6 +580,10 @@
 				document.getElementById("input2").selectedIndex = 0;
 				document.getElementById("operation1").selectedIndex = 0;
 				document.getElementById("input3").selectedIndex = 0;
+				document.getElementById("input1").options[7].disabled = false;
+				document.getElementById("input1").options[8].disabled = false;
+				document.getElementById("input2").options[7].disabled = false;
+				document.getElementById("input2").options[8].disabled = false;
 			}
 			
 			<!-- function changeText(id){-->

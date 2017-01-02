@@ -72,6 +72,8 @@
 		A' OR AB
 		<br>
 		B' OR AB
+		<br>
+		AB AND 0
 		</p>
 		<script>
 		
@@ -407,14 +409,26 @@
 			
 			function DoAndOperation(input1Text, input2Text){
 				<!-- AND with number -->
-				if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''" || input2Text == "AB") ){
+				if(input1Text == "0" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
 					resultrules = input1Text;
 				}
-				else if (input1Text == "1" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "A''" || input2Text == "B''") ){
+				else if (input1Text == "1" && (input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" || input2Text == "AB") ){
 					resultrules = input2Text;
 				}
-				else if ( (input1Text == "A" || input1Text == "B" || input1Text == "A'" || input1Text == "B'" || input1Text == "A''" || input1Text == "B''" || input1Text == "AB") && input2Text == "0"){
+				else if ( (input1Text == "A" || input1Text == "B" || input1Text == "A'" || input1Text == "B'" || input1Text == "A''" || input1Text == "B''") && input2Text == "0"){
 					resultrules = input2Text;
+				}
+				else if ( (input1Text == "A" || input1Text == "B" || input1Text == "A'" || input1Text == "B'" || input1Text == "AB") && input2Text == "1"){
+					resultrules = input1Text;
+				}
+				else if ( (input1Text == "A''" && input2Text == "1") || (input1Text == "1" && input2Text == "A''") ){
+					resultrules = "A";
+				}
+				else if ( (input1Text == "B''" && input2Text == "1") || (input1Text == "1" && input2Text == "B''") ){
+					resultrules = "B";
+				}
+				else if ( (input1Text == "AB" && input2Text == "0") || (input1Text == "0" && input2Text == "AB") ) {
+					resultrules = "still searching";
 				}/*
 				else if (input1Text == "0" && input2Text == "B" ){
 					resultrules = input1Text;
@@ -599,13 +613,6 @@
 				document.getElementById("input2").options[8].disabled = false;
 			}
 			
-			<!-- function changeText(id){-->
-			<!-- id.innerHTML = 'You Clicked';-->
-			<!-- }-->
-			<!-- function changeHeaderText(){-->
-			<!-- 	var heading = document.getElementById('heading');-->
-			<!-- 	heading.innerHTML = 'Header Changed!';-->
-			<!-- }
 		</script>
 	</body>
 </html>

@@ -110,7 +110,6 @@
 			
 			function DoOrOperation(input1Text, input2Text){
 				<!-- OR with number -->
-				/*
 				if(input1Text == "0" && input2Text == "A" ){
 					resultrules = input2Text;
 				}
@@ -184,20 +183,73 @@
 					resultrules = input2Text;
 				}
 				
-				*/
-				
-				if(input1Text == "0" && input2Text == "A" || input2Text == "B" || input2Text == "A'" || input2Text == "B'" ){
+				else if (input1Text == "A" && input2Text == "0"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "A" && input2Text == "1"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "B" && input2Text == "0"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "B" && input2Text == "1"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "A'" && input2Text == "0"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "A'" && input2Text == "1"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "B'" && input2Text == "0"){
+					resultrules = input1Text;
+				}
+				else if (input1Text == "B'" && input2Text == "1"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "A''" && input2Text == "0"){
+					resultrules = "A";
+				}
+				else if (input1Text == "A''" && input2Text == "1"){
+					resultrules = input2Text;
+				}
+				else if (input1Text == "B''" && input2Text == "0"){
+					resultrules = "B";
+				}
+				else if (input1Text == "B''" && input2Text == "1"){
+					resultrules = input2Text;
+				}
+				/*
+				if (input1Text == "1" && input2Text == "A" || input2Text == "B" || input2Text == "A'"|| input2Text == "B'"|| input2Text == "A''"|| input2Text == "B''"){
+					alert("input1 1 called");
+					resultrules = input1Text;
+				}
+				else if(input1Text == "0" && input2Text == "A"){
+					alert("input1 0 input2 else called!");
+					resultrules = input2Text;
+				}
+				else if(input1Text == "0" && input2Text == "B"){
+					alert("input1 0 input2 else called!");
+					resultrules = input2Text;
+				}
+				else if(input1Text == "0" && input2Text == "A'"){
+					alert("input1 0 input2 else called!");
+					resultrules = input2Text;
+				}
+				else if(input1Text == "0" && input2Text == "B'" ){
+					alert("input1 0 input2 else called!");
 					resultrules = input2Text;
 				}
 				else if (input1Text == "0" && input2Text == "A''" ){
+					alert("input1 0 input2 A'' called");
 					resultrules = "A";
 				}
 				else if (input1Text == "0" && input2Text == "B''" ){
+					alert("input1 0 input2 b'' called");
 					resultrules = "B";
 				}
-				else if (input1Text == "1" && input2Text == "A" || input2Text == "B" || input2Text == "A'"|| input2Text == "B'"|| input2Text == "A''"|| input2Text == "B''"){
-					resultrules = input1Text;
-				}
+				*/				
+				
 				<!-- OR with number -->
 				
 				<!-- OR with itself -->

@@ -71,6 +71,12 @@
 				<option value="B'">B'</option>
 			</select>
 			
+			<select id = "operation3">
+				<optgroup label="Select Option">
+				<option value="NoComplement">No Complement All</option>
+				<option value="ComplementAll">Complement All</option>
+			</select>
+			
 			<button onclick="doClickDemorgan()">Solve</button>
 			<span id="answerdemorgan"></span>			
 		</div>
@@ -621,18 +627,35 @@
 				var resultdemorgan;				
 				
 				var op2Text = document.getElementById("operation2").value;
+				var op3Text = document.getElementById("operation3").value;
 				var input3Text = document.getElementById("input3").value;
 				var input4Text = document.getElementById("input4").value;
 				
 				if(op2Text == "OR"){
-					DoOrOperationDemorgan(input3Text, input4Text)
+					DoOrOperationDemorgan(input3Text, input4Text, op3Text)
 				}
 				else if(op2Text == "AND"){
-					DoAndOperationDemorgan(input3Text, input4Text)
+					DoAndOperationDemorgan(input3Text, input4Text, op3Text)
 				}
 				
 			}
-				
+			
+			function DoOrOperationDemorgan(input3Text, input4Text, op3Text){
+				if ( (input3Text == "A" && input4Text == "B" && op3Text == "NoComplement") ||  (input3Text == "B" && input4Text == "A" && op3Text == "NoComplement") ) {
+					resultdemorgan = "A + B";
+				}
+				<!-- (A+B)' -->
+				else if ( (input3Text == "A" && input4Text == "B" && op3Text == "ComplementAll") ||  (input3Text == "B" && input4Text == "A" && op3Text == "ComplementAll") ) {
+					resultdemorgan = "A'B'";
+				}
+				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
+			
+			}
+			
+			function DoAndOperationDemorgan(input3Text, input4Text){
+			
+			}
+			
 			function doReset(){
 				document.getElementById("answerrules").innerHTML = " ";
 				document.getElementById("answerdemorgan").innerHTML = " ";

@@ -694,13 +694,16 @@
 				if ( (input3Text == "A" && input4Text == "B" && op3Text == "NoComplement") ||  (input3Text == "B" && input4Text == "A" && op3Text == "NoComplement") ) {
 					resultdemorgan = "AB";
 				}
-				<!-- (AB)' -->
+				
 				else if ( (input3Text == "A" && input4Text == "B" && op3Text == "ComplementAll") ||  (input3Text == "B" && input4Text == "A" && op3Text == "ComplementAll") ) {
 					resultdemorgan = "A' + B'";
 				}
-				<!-- A'+B' -->
+				
 				else if ( (input3Text == "A'" && input4Text == "B'" && op3Text == "NoComplement") ||  (input3Text == "B'" && input4Text == "A'" && op3Text == "NoComplement") ) {
 					resultdemorgan = "(A + B)'";
+				}
+				else if ( (input3Text == "A'" && input4Text == "B'" && op3Text == "ComplementaAll") ||  (input3Text == "B'" && input4Text == "A'" && op3Text == "ComplementaAll") ) {
+					resultdemorgan = "(A'B')'";
 				}
 				document.getElementById("answerdemorgan").innerHTML = resultdemorgan;
 			}

@@ -86,15 +86,17 @@
 		
 		<p>Still not done;
 		<br>
-		AB OR 1
+		AB OR 1 = 1?
+		<br>
+		AB OR 0 = AB?
 		<br>
 		AB OR B'
 		<br>
-		A' OR AB
+		[SETTLE] A' OR AB = A' + B
 		<br>
-		B' OR AB
+		AB AND 0 = 0?
 		<br>
-		AB AND 0
+		AB AND 1 = AB?
 		<br>
 		Rule 11 KIV/discarded?. Rule 12 discarded.
 		</p>
@@ -356,7 +358,7 @@
 					resultrules = "B";
 				}
 				else if ( (input1Text == "A'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "A'") ) {
-					resultrules = "still searching";
+					resultrules = "A' + B";
 				}
 				<!-- not done yet -->
 				else if ( (input1Text == "B'" && input2Text == "AB") || (input1Text == "AB" && input2Text == "B'") ) {
